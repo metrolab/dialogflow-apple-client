@@ -34,7 +34,7 @@ NSString *const kDefaultVersion = @"20150910";
 
 @synthesize configuration=_configuration, version=_version;
 
-+ (instancetype)sharedApiAI
++ (ApiAI *)sharedApiAI
 {
     static ApiAI *apiAI = nil;
     static dispatch_once_t onceToken;

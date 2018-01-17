@@ -53,9 +53,9 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
  */
 @interface ApiAI : NSObject
 
-+ (instancetype)sharedApiAI;
++ (ApiAI * __AI_NONNULL)sharedApiAI;
 
-+ (NSArray *)supportedLanguages;
++ (NSArray * __AI_NONNULL)supportedLanguages;
 
 /*!
  
@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
                              @"zh-TW",
  */
 
-@property(nonatomic, copy) NSString *lang;
+@property(nonatomic, copy, AI_NONNULL) NSString *lang;
 
 /*!
  
@@ -89,7 +89,7 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
  
  */
 
-@property(nonatomic, copy) NSString *version;
+@property(nonatomic, copy, AI_NONNULL) NSString *version;
 
 /*!
  
@@ -98,19 +98,19 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
  @discussion configuration property, cannot be NULL.
  
  */
-@property(nonatomic, strong) id <AIConfiguration> configuration;
+@property(nonatomic, strong) id <AIConfiguration> __AI_NONNULL configuration;
 
 #if __has_include("AITextRequest.h")
-- (AITextRequest *)textRequest;
+- (AITextRequest * __AI_NONNULL)textRequest;
 #endif
 
 #if __has_include("AIUserEntitiesRequest.h")
-- (AIUserEntitiesRequest *)userEntitiesRequest;
+- (AIUserEntitiesRequest * __AI_NONNULL)userEntitiesRequest;
 #endif
 
 
 #if __has_include("AIEventRequest.h")
-- (AIEventRequest *)eventRequest;
+- (AIEventRequest * __AI_NONNULL)eventRequest;
 #endif
 
 /*!
@@ -120,7 +120,7 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
  @discussion using this method for send request.
  
  */
-- (void)enqueue:(NSOperation<AIRequest> *)request;
+- (void)enqueue:(NSOperation<AIRequest> * __AI_NONNULL)request;
 
 /*!
  

@@ -29,7 +29,7 @@
  * @param request The request called handler.
  * @param response Server responce (Serialized JSON).
  */
-typedef void(^SuccesfullResponseBlock)(AIRequest *request, id response);
+typedef void(^SuccesfullResponseBlock)(AIRequest * __AI_NONNULL request, id __AI_NONNULL response);
 
 /*!
  * Failure handler definition for AIRequest.
@@ -37,7 +37,7 @@ typedef void(^SuccesfullResponseBlock)(AIRequest *request, id response);
  * @param request The request called handler.
  * @param error The response error.
  */
-typedef void(^FailureResponseBlock)(AIRequest *request, NSError *error);
+typedef void(^FailureResponseBlock)(AIRequest * __AI_NONNULL request, NSError * __AI_NONNULL error);
 
 @protocol AIRequest <NSObject>
 
@@ -48,7 +48,7 @@ typedef void(^FailureResponseBlock)(AIRequest *request, NSError *error);
  @discussion NSURLSessionDataTask.
  
  */
-@property(nonatomic, strong) NSURLSessionDataTask *dataTask;
+@property(nonatomic, strong, AI_NULLABLE) NSURLSessionDataTask *dataTask;
 
 /*!
  
@@ -57,7 +57,7 @@ typedef void(^FailureResponseBlock)(AIRequest *request, NSError *error);
  @discussion private property, don't use it.
  
  */
-@property(nonatomic, weak) AIDataService *dataService;
+@property(nonatomic, weak, AI_NULLABLE) AIDataService *dataService;
 
 @end
 
@@ -70,7 +70,7 @@ typedef void(^FailureResponseBlock)(AIRequest *request, NSError *error);
  @discussion Contain error (optional) after getting response
  
  */
-@property(nonatomic, copy) NSError *error;
+@property(nonatomic, copy, AI_NULLABLE) NSError *error;
 
 /*!
  
@@ -79,15 +79,15 @@ typedef void(^FailureResponseBlock)(AIRequest *request, NSError *error);
  @discussion Contain server response.
  
  */
-@property(nonatomic, strong) id response;
+@property(nonatomic, strong, AI_NULLABLE) id response;
 
 /**
  Set completion handlers.
  @param succesfullBlock A block object to be executed when the task finishes successfully.
  @param failureBlock A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data.
  */
-- (void)setCompletionBlockSuccess:(SuccesfullResponseBlock)succesfullBlock failure:(FailureResponseBlock)failureBlock;
+- (void)setCompletionBlockSuccess:(SuccesfullResponseBlock __AI_NONNULL)succesfullBlock failure:(FailureResponseBlock __AI_NULLABLE)failureBlock;
 
-- (instancetype)init __unavailable;
+- (instancetype __AI_NONNULL)init __unavailable;
 
 @end

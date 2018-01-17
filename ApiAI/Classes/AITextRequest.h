@@ -22,9 +22,18 @@
  
  @property query
  
- @discussion string or array of strings. Required field.
+ @discussion One of query or queries must be non nil
  
  */
-@property(nonatomic, strong) id query;
+@property(nonatomic, strong, AI_NULLABLE) NSString *query;
+
+/*!
+
+ @property queries array of queries
+
+ @discussion One of query or queries must be non nil
+
+ */
+@property(nonatomic, strong, AI_NULLABLE) NSArray AI_GENERICS_1(NSString *) *queries;
 
 @end
