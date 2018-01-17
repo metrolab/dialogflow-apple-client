@@ -128,7 +128,6 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
  @method requestWithType
  
  @discussion return request object with used type (@see AIRequestType).
- @return
  
  @deprecated This method will be remove in future version. Please use :voiceRequest and :textRequest.
  

@@ -35,7 +35,7 @@ typedef void(^SuccesfullResponseBlock)(AIRequest *request, id response);
  * Failure handler definition for AIRequest.
  *
  * @param request The request called handler.
- * @param response Server responce (Serialized JSON).
+ * @param error The response error.
  */
 typedef void(^FailureResponseBlock)(AIRequest *request, NSError *error);
 
@@ -83,8 +83,8 @@ typedef void(^FailureResponseBlock)(AIRequest *request, NSError *error);
 
 /**
  Set completion handlers.
- @param success A block object to be executed when the task finishes successfully.
- @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data.
+ @param succesfullBlock A block object to be executed when the task finishes successfully.
+ @param failureBlock A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data.
  */
 - (void)setCompletionBlockSuccess:(SuccesfullResponseBlock)succesfullBlock failure:(FailureResponseBlock)failureBlock;
 
