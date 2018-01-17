@@ -25,6 +25,7 @@
     if (self) {
         _speech = dictionary[@"speech"];
         _messages = dictionary[@"messages"];
+        _data = dictionary[@"data"];
     }
     
     return self;
