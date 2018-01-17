@@ -24,10 +24,6 @@
 #import "AIConfiguration.h"
 #import "AIRequest.h"
 
-#if __has_include("AIVoiceFileRequest_Private.h")
-    #import "AIVoiceFileRequest_Private.h"
-#endif
-
 NSString *const kDefaultVersion = @"20150910";
 
 @interface ApiAI ()
@@ -56,11 +52,7 @@ NSString *const kDefaultVersion = @"20150910";
 #if __has_include("AITextRequest.h")
         request = [[AITextRequest alloc] initWithDataService:_dataService];
 #endif
-    } else {
-#if AI_SUPPORT_VOICE_REQUEST
-        request = [[AIVoiceRequest alloc] initWithDataService:_dataService];
-#endif
-    }
+    } else { }
     
     if ([request isKindOfClass:[AIQueryRequest class]]) {
         AIQueryRequest *queryRequest = (AIQueryRequest *)request;
@@ -71,17 +63,6 @@ NSString *const kDefaultVersion = @"20150910";
     
     return request;
 }
-
-#if AI_SUPPORT_VOICE_REQUEST
-- (AIVoiceRequest *)voiceRequest
-{
-    AIVoiceRequest *request = [[AIVoiceRequest alloc] initWithDataService:_dataService];
-    [request setVersion:self.version];
-    [request setLang:self.lang];
-    
-    return  request;
-}
-#endif
 
 #if __has_include("AITextRequest.h")
 - (AITextRequest *)textRequest
@@ -100,45 +81,6 @@ NSString *const kDefaultVersion = @"20150910";
     AIUserEntitiesRequest *request = [[AIUserEntitiesRequest alloc] initWithDataService:_dataService];
     return request;
 }
-#endif
-
-#if __has_include("AIVoiceFileRequest.h")
-- (AIVoiceFileRequest *)voiceFileRequestWithFileURL:(NSURL *)fileURL
-{
-    NSString *contentType = @"audio/wav";
-    
-    NSString *fileExtension = [fileURL pathExtension];
-    if (fileExtension) {
-        if ([fileExtension isEqualToString:@"mp4"]) {
-            contentType = @"audio/mp4";
-        }
-    }
-    
-    NSInputStream *stream = [[NSInputStream alloc] initWithURL:fileURL];
-    AIVoiceFileRequest *request = [self voiceFileRequestWithStream:stream];
-    
-    request.contentType = contentType;
-    
-    return request;
-}
-
-- (AIVoiceFileRequest *)voiceFileRequestWithStream:(NSInputStream *)inputStream
-{
-    AIVoiceFileRequest *request = [[AIVoiceFileRequest alloc] initWithDataService:_dataService];
-    
-    request.inputStream = inputStream;
-    [request setVersion:self.version];
-    [request setLang:self.lang];
-    
-    return request;
-}
-
-- (AIVoiceFileRequest *)voiceFileRequestWithData:(NSData *)fileData
-{
-    NSInputStream *stream = [[NSInputStream alloc] initWithData:fileData];
-    return [self voiceFileRequestWithStream:stream];
-}
-
 #endif
 
 #if __has_include("AIEventRequest.h")

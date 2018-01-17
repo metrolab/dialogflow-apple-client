@@ -37,21 +37,6 @@
 
 @implementation AIQueryRequest
 
-- (void)setContexts:(NSArray *)contexts
-{
-    _contexts = [contexts copy];
-    
-    NSMutableArray AI_GENERICS_1(AIRequestContext *)  *requestContexts = [NSMutableArray array];
-    
-    [contexts enumerateObjectsUsingBlock:^(id  __AI_NONNULL obj, NSUInteger idx, BOOL * __AI_NONNULL stop) {
-        AIRequestContext *requestContext = [[AIRequestContext alloc] initWithName:obj
-                                                                    andParameters:nil];
-        [requestContexts addObject:requestContext];
-    }];
-    
-    self.requestContexts = requestContexts;
-}
-
 - (NSString *)sessionId
 {
     if (!_sessionId) {

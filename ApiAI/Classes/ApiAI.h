@@ -21,29 +21,8 @@
 #import "AITextRequest.h"
 #import "AIDefaultConfiguration.h"
 
-#if __has_include("AIVoiceRequestButton.h")
-    #import "AIVoiceRequestButton.h"
-#endif
-
 #if __has_include("AIResponse.h")
     #import "AIResponse.h"
-#endif
-
-#if __has_include("AIVoiceRequest.h")
-    #import "AIVoiceRequest.h"
-
-    #if defined(TARGET_OS_IOS) || defined(TARGET_OS_MAC)
-        #define AI_SUPPORT_VOICE_REQUEST (TARGET_OS_IOS || TARGET_OS_MAC)
-    #else
-        //Enable support voice request for XCode older than 7.x version
-        #define AI_SUPPORT_VOICE_REQUEST 1
-    #endif
-#else
-    #define AI_SUPPORT_VOICE_REQUEST 0
-#endif
-
-#if __has_include("AIVoiceFileRequest.h")
-    #import "AIVoiceFileRequest.h"
 #endif
 
 #if __has_include("AIUserEntitiesRequest.h")
@@ -58,14 +37,12 @@
  
  @enum AIRequestType enum
  
- @discussion Requst type (Voice or Text).
+ @discussion Requst type (Text).
  
  */
 typedef NS_ENUM(NSUInteger, AIRequestType) {
     /*! Simple text request type */
-    AIRequestTypeText,
-    /*! Voice request type with VAD(Voice activity detection) for detect end of phrase. */
-    AIRequestTypeVoice DEPRECATED_MSG_ATTRIBUTE("Use :voiceRequest or :textRequest methods") = 1
+    AIRequestTypeText
 };
 
 /*!
@@ -123,31 +100,6 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
  */
 @property(nonatomic, strong) id <AIConfiguration> configuration;
 
-/*!
- 
- @method requestWithType
- 
- @discussion return request object with used type (@see AIRequestType).
- 
- @deprecated This method will be remove in future version. Please use :voiceRequest and :textRequest.
- 
- */
-
-- (AIRequest *)requestWithType:(AIRequestType)requestType DEPRECATED_MSG_ATTRIBUTE("Use :voiceRequest or :textRequest methods");
-
-#if AI_SUPPORT_VOICE_REQUEST
-/*!
- API.AI speech recognition is going to be deprecated soon.
- Use Google Cloud Speech API or other solutions.
- 
- This is request type available only for old paid plans.
- It doesn't working for new users.
- 
- Will be removed on 1 Feb 2016.
- */
-- (AIVoiceRequest *)voiceRequest AI_DEPRECATED_MSG_ATTRIBUTE("Will be removed on 1 Feb 2016.");
-#endif
-
 #if __has_include("AITextRequest.h")
 - (AITextRequest *)textRequest;
 #endif
@@ -156,21 +108,6 @@ typedef NS_ENUM(NSUInteger, AIRequestType) {
 - (AIUserEntitiesRequest *)userEntitiesRequest;
 #endif
 
-
-#if __has_include("AIVoiceFileRequest.h")
-/*!
- API.AI speech recognition is going to be deprecated soon.
- Use Google Cloud Speech API or other solutions.
- 
- This is request type available only for old paid plans.
- It doesn't working for new users.
- 
- Will be removed on 1 Feb 2016.
- */
-- (AIVoiceFileRequest *)voiceFileRequestWithFileURL:(NSURL *)fileURL AI_DEPRECATED_MSG_ATTRIBUTE("Will be removed on 1 Feb 2016.");
-- (AIVoiceFileRequest *)voiceFileRequestWithStream:(NSInputStream *)inputStream AI_DEPRECATED_MSG_ATTRIBUTE("Will be removed on 1 Feb 2016.");
-- (AIVoiceFileRequest *)voiceFileRequestWithData:(NSData *)fileData AI_DEPRECATED_MSG_ATTRIBUTE("Will be removed on 1 Feb 2016.");
-#endif
 
 #if __has_include("AIEventRequest.h")
 - (AIEventRequest *)eventRequest;

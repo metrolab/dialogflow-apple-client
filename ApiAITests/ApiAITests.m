@@ -275,7 +275,7 @@
     XCTAssert([result.source isEqualToString:@"agent"], @"source should be equal to 'agent'");
     
     XCTAssert([result.resolvedQuery isEqualToString:@"Hello"], @"source should be equal to 'agent'");
-    XCTAssert([result.fulfillment.speech isEqualToString:@"Hi! How are you?"], @"source should be equal to 'agent'");
+
     XCTAssert([result.action isEqualToString:@"greeting"], @"source should be equal to 'agent'");
     
     XCTAssert(result.parameters != nil, @"parameters cannot be nil");
