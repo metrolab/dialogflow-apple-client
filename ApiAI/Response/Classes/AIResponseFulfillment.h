@@ -23,16 +23,17 @@
 
 @interface AIResponseFulfillment : NSObject
 
-- (instancetype)init __unavailable;
-
-/**
- Response speech.
- */
-@property(nonatomic, copy, readonly) NSString *speech AI_DEPRECATED_MSG_ATTRIBUTE("Use messages property.");
+- (instancetype __AI_NONNULL)init __unavailable;
 
 /**
  Response messages. See https://docs.api.ai/docs/rich-messages for details.
  */
-@property(nonatomic, copy, readonly) NSArray AI_GENERICS_1(NSDictionary *) *messages;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSArray AI_GENERICS_1(NSDictionary *) *messages;
+
+
+/**
+ Response data
+ */
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSDictionary *data;
 
 @end

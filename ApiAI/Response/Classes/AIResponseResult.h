@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#import "AIResponseMetadata.h"
-#import "AIResponseParameter.h"
-#import "AIResponseFulfillment.h"
-#import "AIResponseContext.h"
+
+#import "AINullabilityDefines.h"
+
+@class AIResponseContext;
+@class AIResponseFulfillment;
+@class AIResponseMetadata;
 
 /**
  `AIResponseResult` is class containing result of server response.
@@ -25,53 +26,53 @@
 
 @interface AIResponseResult : NSObject
 
-- (instancetype)init __unavailable;
+- (instancetype __AI_NONNULL)init __unavailable;
 
 /**
  Source of processing request. Can be 'agent', 'domain'
  */
-@property(nonatomic, copy, readonly) NSString *source;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSString *source;
 
 /**
  The query that was used to produce this result.
  */
-@property(nonatomic, copy, readonly) NSString *resolvedQuery;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSString *resolvedQuery;
 
 /**
  'actionIncomplete'
  */
 
-@property(nonatomic, copy, readonly) NSNumber *actionIncomplete;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSNumber *actionIncomplete;
 
 /**
  Action.
  */
-@property(nonatomic, copy, readonly) NSString *action;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSString *action;
 
 /**
  The list of parameters for the action.
  */
-@property(nonatomic, copy, readonly) NSDictionary *parameters;
+@property(nonatomic, copy, readonly, AI_NONNULL) NSDictionary *parameters;
 
 /**
  Array of `AIResponseContext` object.
  
  @see `AIResponseContext`
  */
-@property(nonatomic, copy, readonly) NSArray *contexts;
+@property(nonatomic, copy, readonly, AI_NONNULL) NSArray AI_GENERICS_1(AIResponseContext *) *contexts;
 
 /**
  Fulfillment.
  
  @see `AIResponseFulfillment`
  */
-@property(nonatomic, strong, readonly) AIResponseFulfillment *fulfillment;
+@property(nonatomic, strong, readonly, AI_NONNULL) AIResponseFulfillment *fulfillment;
 
 /**
  Metadata object.
  
  @see `AIResponseMetadata`
  */
-@property(nonatomic, strong, readonly) AIResponseMetadata *metadata;
+@property(nonatomic, strong, readonly, AI_NONNULL) AIResponseMetadata *metadata;
 
 @end

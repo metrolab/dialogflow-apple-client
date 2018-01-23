@@ -19,11 +19,15 @@
 
 @implementation AIRequest (AIMappedResponse)
 
-- (void)setMappedCompletionBlockSuccess:(SuccesfullResponseBlock)succesfullBlock failure:(FailureResponseBlock)failureBlock
+- (void)setMappedCompletionBlockSuccess:(SuccesfullMappedResponseBlock)succesfullBlock failure:(FailureResponseBlock)failureBlock
 {
     [self setCompletionBlockSuccess:^(AIRequest *request, id responseJSON) {
         AIResponse *response = [[AIResponse alloc] initWithResponse:responseJSON];
-        succesfullBlock(request, response);
+        if (response.status.isSuccess) {
+            succesfullBlock(request, response);
+        } else {
+            failureBlock(request, response.status.error);
+        }
     } failure:^(AIRequest *request, NSError *error) {
         failureBlock(request, error);
     }];

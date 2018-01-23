@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #import <Foundation/Foundation.h>
+#import "AINullabilityDefines.h"
 
 /**
  `AIResponseMetadata` is class for Metadata object.
@@ -25,13 +26,13 @@
 /**
  Id of the intent that produced this result.
  */
-@property(nonatomic, copy, readonly) NSString *indentId;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSString *indentId;
 
 /**
  Name of the intent that produced this result.
  */
-@property(nonatomic, copy, readonly) NSString *intentName;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSString *intentName;
 
-- (instancetype)init __unavailable;
+- (instancetype __AI_NONNULL)init __unavailable;
 
 @end

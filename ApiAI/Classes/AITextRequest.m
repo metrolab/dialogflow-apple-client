@@ -41,9 +41,9 @@
     }
     
     NSString *timeZoneString = self.timeZone ? self.timeZone.name : [NSTimeZone localTimeZone].name;
-    
+
     NSMutableDictionary *parameters = [@{
-                                        @"query": _query,
+                                         @"query": _queries ?: _query,
                                         @"timezone": timeZoneString,
                                         @"lang": self.lang
                                         } mutableCopy];

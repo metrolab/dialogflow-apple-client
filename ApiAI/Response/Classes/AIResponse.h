@@ -36,35 +36,35 @@
  Private method.
 */
 
-- (instancetype)init __unavailable;
+- (instancetype __AI_NONNULL)init __unavailable;
 
 /**
  Initializes an `AIResponse` object with specified response.
  */
-- (instancetype)initWithResponse:(id)responseObject;
+- (instancetype __AI_NONNULL)initWithResponse:(id __AI_NONNULL)responseObject;
 
 /**
  Unique identifier of the result.
  */
-@property(nonatomic, copy, readonly) NSString *identifier;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSString *identifier;
 
 /**
  Date of server response.
  */
-@property(nonatomic, copy, readonly) NSDate *timestamp;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSDate *timestamp;
 
 /**
  Status object.
  
  @see `AIResponseStatus`
  */
-@property(nonatomic, strong, readonly) AIResponseStatus *status;
+@property(nonatomic, strong, readonly, AI_NONNULL) AIResponseStatus *status;
 
 /**
  Result object.
  
  @see `AIResponseResult`
  */
-@property(nonatomic, strong, readonly) AIResponseResult *result;
+@property(nonatomic, strong, readonly, AI_NONNULL) AIResponseResult *result;
 
 @end
