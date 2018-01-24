@@ -24,42 +24,42 @@
 
 @interface AIResponseParameter : NSObject
 
-- (instancetype)init __unavailable;
+- (instancetype __AI_NONNULL)init __unavailable;
 
 /**
  Return string presentation of parameter value.
  */
-@property(nonatomic, copy, readonly) NSString *stringValue;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSString *stringValue;
 
 /**
  Return number presentation of parameter value.
  */
-@property(nonatomic, copy, readonly) NSNumber *numberValue;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSNumber *numberValue;
 
 /**
  Return Date Period presentation of parameter value. Can be nil or array of 2 dates.
  */
-@property(nonatomic, copy, readonly) NSArray AI_GENERICS_1(NSDate *) *datePeriodValue;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSArray AI_GENERICS_1(NSDate *) *datePeriodValue;
 
 /**
  Return Date presentation of parameter value. Can be nil or date objects.
  */
-@property(nonatomic, copy, readonly) NSDate *dateValue;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSDate *dateValue;
 
 /**
  Return list presentation of parameter value. Can be nil or array of `AIResponseParameter` objects.
  */
-@property(nonatomic, copy, readonly) NSArray AI_GENERICS_1(AIResponseParameter *) *listValue;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSArray AI_GENERICS_1(AIResponseParameter *) *listValue;
 
 /**
  Return compiste presentation of parameter value. Can be nil or dictionary with `AIResponseParameter` objects.
  */
-@property(nonatomic, copy, readonly) NSDictionary AI_GENERICS_2(NSString *, AIResponseParameter *) *compositeValue;
+@property(nonatomic, copy, readonly, AI_NULLABLE) NSDictionary AI_GENERICS_2(NSString *, AIResponseParameter *) *compositeValue;
 
 /**
  Return raw presentation of parameter value. Can be nil or any type object. 
  This is value like JSON serialized field. Can be string, object, array, null
  */
-@property(nonatomic, copy, readonly) id <NSObject> rawValue;
+@property(nonatomic, copy, readonly, AI_NULLABLE) id <NSObject> rawValue;
 
 @end

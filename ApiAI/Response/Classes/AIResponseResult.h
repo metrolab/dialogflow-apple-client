@@ -19,6 +19,7 @@
 @class AIResponseContext;
 @class AIResponseFulfillment;
 @class AIResponseMetadata;
+@class AIResponseParameter;
 
 /**
  `AIResponseResult` is class containing result of server response.
@@ -52,7 +53,7 @@
 /**
  The list of parameters for the action.
  */
-@property(nonatomic, copy, readonly, AI_NONNULL) NSDictionary *parameters;
+@property(nonatomic, copy, readonly, AI_NONNULL) NSDictionary AI_GENERICS_2(NSString *, AIResponseParameter *) *parameters;
 
 /**
  Array of `AIResponseContext` object.
